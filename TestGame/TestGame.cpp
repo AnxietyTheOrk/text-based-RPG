@@ -51,7 +51,14 @@ public:
     int ammo;
 };
 
-class Inventory {
+class armor {
+public:
+    string armorType;
+    int armorValue;
+    int attackMissChance;
+};
+
+class item {
 public:
     string itemName;
     int healing;
@@ -85,6 +92,15 @@ weapon staff;
 weapon wand;
 weapon crossbow;
 weapon bow;
+
+armor leather;
+armor chain;
+armor cloth;
+armor plate;
+
+//Add more items
+item potion;
+
 
 //Arrays
 
@@ -217,6 +233,32 @@ void Weapons() {
     bow.ammo = 5;
 };
 
+void Armor() {
+    chain.armorType = "Chainmail";
+    cloth.armorType = "Cloth";
+    leather.armorType = "Leather";
+    plate.armorType = "Plate";
+
+    chain.armorValue = 3;
+    cloth.armorValue = 0;
+    leather.armorValue = 2;
+    plate.armorValue = 5;
+
+    chain.attackMissChance = 30;
+    cloth.attackMissChance = 10;
+    leather.attackMissChance = 20;
+    plate.attackMissChance = 40;
+}
+
+void Items() {
+    potion.itemName = "Health Potion";
+
+    potion.healing = 3;
+
+    potion.itemDamage = 0;
+    
+    potion.itemRange = 0;
+}
 
 Player choices() {
     charStats();
@@ -369,10 +411,12 @@ Player choices() {
     return player;
 };
 
-int inventory() {
+/*Inventory gear() {
     Weapons();
-    inventory Weapon;
-}
+    Armor();
+    Items();
+    
+}*/
 
 //Main
 
@@ -389,14 +433,25 @@ int main() {
         if (player.playerMP <= 0) {
             cout << endl << "You're out of Mana!";
         };
-        cout << "";
+        cout << "You enter the dungeon. As you step inside, the door behind you vanishes." << endl;
+        cout << "Looking around, you see a large, nearly empty room. At the far end of the room are a table and a doorway.";
         string game;
         cin >> game;
         if (game == "New Game" || game == "New game" || game == "new game") {
             restartGame = false;
         }
-        /*else if (game == "What do I see")
+        /*else if (game == "Left" || game == "left") {
             something
+        }
+        else if (game == "Right" || game == "right") {
+            something else
+        }
+        else if (game == "Forward" || game == "forward") {
+            third option
+        }
+        else if (game == "Back" || game == "back" || game == "Backwards" || game == "backwards") {
+            forth option
+        }
         */
     };
     return 0;
