@@ -1,1 +1,2 @@
-Making this game to learn C++
+Making this game to learn C++.
+It's far from complete.
