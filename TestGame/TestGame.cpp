@@ -1,4 +1,7 @@
 #include <iostream>
+#include <time.h>
+#include <stdlib.h>
+
 
 using namespace std;
 
@@ -100,6 +103,8 @@ armor plate;
 
 //Add more items
 item potion;
+
+int roomNo = 1;
 
 
 //Arrays
@@ -418,6 +423,26 @@ Player choices() {
     
 }*/
 
+int roomGen() {
+    srand(time(NULL));
+    rand();
+    while (roomNo > 11) {
+        int room = roomNo + rand() % 11;
+        roomNo++;
+        if (room == 0) {
+            cout << "You enter an empty room." << endl;
+            cout << "Do you continue through the door on the opposite side?" << endl;
+        }
+        else if (room == 1) {
+            cout << "You found 1 piece of treasure" << endl;
+        }
+        else {
+            cout << "Fight!" << endl;
+        }
+    };
+    return 0;
+};
+
 //Main
 
 int main() {
@@ -426,6 +451,24 @@ int main() {
     while (restartGame) {
         Player player = choices();
 
+        cout << "You enter the dungeon. As you step inside, the door behind you vanishes." << endl;
+        cout << "Looking around, you see a large, nearly empty room. At the far end of the room are a table and a doorway." << endl;
+        string game;
+        cin >> game;
+        if (game == "Forward" || game == "forward") {
+            roomGen();
+        }
+        else if (game == "New Game" || game == "New game" || game == "new game") {
+            restartGame = false;
+        }
+        else {
+            cout << "Where do you want to go?" << endl;
+        }
+        /*else if (game == "Back" || game == "back" || game == "Backwards" || game == "backwards") {
+            forth option
+        }
+        */
+
         if (player.playerHP <= 0) {
             cout << endl << "You died!";
         };
@@ -433,26 +476,6 @@ int main() {
         if (player.playerMP <= 0) {
             cout << endl << "You're out of Mana!";
         };
-        cout << "You enter the dungeon. As you step inside, the door behind you vanishes." << endl;
-        cout << "Looking around, you see a large, nearly empty room. At the far end of the room are a table and a doorway.";
-        string game;
-        cin >> game;
-        if (game == "New Game" || game == "New game" || game == "new game") {
-            restartGame = false;
-        }
-        /*else if (game == "Left" || game == "left") {
-            something
-        }
-        else if (game == "Right" || game == "right") {
-            something else
-        }
-        else if (game == "Forward" || game == "forward") {
-            third option
-        }
-        else if (game == "Back" || game == "back" || game == "Backwards" || game == "backwards") {
-            forth option
-        }
-        */
     };
     return 0;
 }
