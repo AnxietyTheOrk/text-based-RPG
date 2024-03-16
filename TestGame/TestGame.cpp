@@ -426,7 +426,7 @@ Player choices() {
 int roomGen() {
     srand(time(NULL));
     rand();
-    while (roomNo > 11) {
+    if (roomNo < 11) {
         int room = roomNo + rand() % 11;
         roomNo++;
         if (room == 0) {
@@ -455,20 +455,26 @@ int main() {
         cout << "Looking around, you see a large, nearly empty room. At the far end of the room are a table and a doorway." << endl;
         string game;
         cin >> game;
-        if (game == "Forward" || game == "forward") {
-            roomGen();
+        while (roomNo < 11) {
+            if (game == "Forward" || game == "forward") {
+                roomGen();
+                cout << "Forward or go back?" << endl;
+                cin >> game;
+                if (game == "Go Back" || game == "Go back" || game == "go back") {
+                    restartGame = false;
+                }
+            }
+            else if (game == "New Game" || game == "New game" || game == "new game") {
+                restartGame = false;
+            }
+            else {
+                cout << "Where do you want to go?" << endl;
+            }
+            /*else if (game == "Back" || game == "back" || game == "Backwards" || game == "backwards") {
+                forth option
+            }
+            */
         }
-        else if (game == "New Game" || game == "New game" || game == "new game") {
-            restartGame = false;
-        }
-        else {
-            cout << "Where do you want to go?" << endl;
-        }
-        /*else if (game == "Back" || game == "back" || game == "Backwards" || game == "backwards") {
-            forth option
-        }
-        */
-
         if (player.playerHP <= 0) {
             cout << endl << "You died!";
         };
